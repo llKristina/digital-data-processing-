@@ -34,3 +34,13 @@ while(True):
         break
 video.release()
 cv2.destroyAllWindows()
+
+#task 5
+img = cv2.imread(r"cat.jpg")
+hsv=cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+img=cv2.resize(img,(350,350))
+hsv=cv2.resize(hsv,(350,350))
+cv2.imshow("original",img)
+cv2.imshow("HSV", hsv)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
