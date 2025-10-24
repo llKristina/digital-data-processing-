@@ -16,7 +16,8 @@ def task1():
 # task1()
 
 def task2():
-    img=cv2.imread(r"pic.jpg")
+    imgl=cv2.imread(r"pic.jpg")
+    img = cv2.resize(imgl, (400, 500)) 
     lower_red = np.array([0, 0, 120])
     upper_red = np.array([80, 80, 255])
     mask = cv2.inRange(img, lower_red, upper_red)
@@ -24,7 +25,7 @@ def task2():
     _, thresholded = cv2.threshold(mask, 100, 255, cv2.THRESH_BINARY)
 
     cv2.imshow("Threshold (red only)", thresholded)
-
+    cv2.imshow("Original", img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
@@ -101,4 +102,4 @@ def task45():
         
     cap.release()
     cv2.destroyAllWindows()
-task45()
+# task45()
