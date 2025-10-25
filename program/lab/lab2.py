@@ -18,13 +18,12 @@ def task1():
 def task2():
     imgl=cv2.imread(r"pic.jpg")
     img = cv2.resize(imgl, (400, 500)) 
+
     lower_red = np.array([0, 0, 120])
     upper_red = np.array([80, 80, 255])
     mask = cv2.inRange(img, lower_red, upper_red)
 
-    _, thresholded = cv2.threshold(mask, 100, 255, cv2.THRESH_BINARY)
-
-    cv2.imshow("Threshold (red only)", thresholded)
+    cv2.imshow("mask", mask)
     cv2.imshow("Original", img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
@@ -38,15 +37,12 @@ def task3():
     upper_red = np.array([80, 80, 255])
     mask = cv2.inRange(img, lower_red, upper_red)
 
-    _, thresh = cv2.threshold(mask, 100, 255, cv2.THRESH_BINARY)
-
-    kernel = np.ones((5, 5), np.uint8)  
-
-    opening = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel)
-    closing = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
+    kernel = np.ones((3, 3), np.uint8)  
+    opening = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
+    closing = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
 
     cv2.imshow("Original", img)
-    cv2.imshow("Threshold", thresh)
+    cv2.imshow("Threshold", mask)
     cv2.imshow("Opening (erode->dilate)", opening)
     cv2.imshow("Closing (dilate->erode)", closing)
 
